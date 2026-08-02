@@ -37,7 +37,11 @@ const getProducts = async (req, res) => {
 //SingleProduct
 const getSingleProduct = async (req, res) => {
   try {
+    console.log("Requested ID:", req.params.id);
+
     const product = await Product.findById(req.params.id);
+
+    console.log("Product:", product);
 
     if (!product) {
       return res.status(404).json({
@@ -45,8 +49,12 @@ const getSingleProduct = async (req, res) => {
       });
     }
 
-    res.status(200).json(product);
+    res.status(200).json({
+      success: true,
+      product,
+    });
   } catch (error) {
+    console.log(error);
     res.status(500).json({
       message: error.message,
     });

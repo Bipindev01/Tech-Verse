@@ -1,16 +1,11 @@
-import React from 'react'
 import Hero from "../components/home/Hero";
-import CategorySection from "../components/home/CategorySection";
-import FeaturedProducts from "../components/home/FeaturedProducts";
-import WhyChooseUs from "../components/home/WhyChooseUs";
+import FeaturedDevices from "../components/home/FeaturedDevices";
 
 function Home() {
   return (
     <>
       <Hero />
-      <CategorySection />
-      <FeaturedProducts />
-      <WhyChooseUs />
+      <FeaturedDevices />
     </>
   );
 }

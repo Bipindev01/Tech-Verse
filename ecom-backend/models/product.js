@@ -18,10 +18,22 @@ const productSchema = new mongoose.Schema(
       required: [true, "Category is required"],
     },
 
+    // NEW
+    brand: {
+      type: String,
+      required: [true, "Brand is required"],
+    },
+
     price: {
       type: Number,
       required: [true, "Price is required"],
       min: 0,
+    },
+
+    // NEW
+    discountPrice: {
+      type: Number,
+      default: 0,
     },
 
     stock: {
@@ -33,6 +45,24 @@ const productSchema = new mongoose.Schema(
     image: {
       type: String,
       default: "",
+    },
+
+    // NEW
+    isDeal: {
+      type: Boolean,
+      default: false,
+    },
+
+    // NEW
+    isNewArrival: {
+      type: Boolean,
+      default: false,
+    },
+
+    // NEW
+    featured: {
+      type: Boolean,
+      default: false,
     },
   },
   {

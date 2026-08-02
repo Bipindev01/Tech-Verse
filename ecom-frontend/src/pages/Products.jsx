@@ -1,19 +1,38 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { fetchProducts } from "../redux/slices/productSlice";
 
 import ProductCard from "../components/ProductCard";
+import CategorySection from "../components/home/CategorySection";
 
 function Products() {
 
   const dispatch = useDispatch();
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [searchParams] = useSearchParams();
+
+const search = searchParams.get("search") || "";
 
   const {
     products,
     loading,
     error,
   } = useSelector((state) => state.product);
+
+  const filteredProducts = products.filter((product) => {
+
+  const matchesCategory =
+    selectedCategory === "All" ||
+    product.category === selectedCategory;
+
+  const matchesSearch =
+    product.name.toLowerCase().includes(search.toLowerCase());
+
+  return matchesCategory && matchesSearch;
+
+});
 
   useEffect(() => {
     dispatch(fetchProducts());
@@ -36,24 +55,37 @@ function Products() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto py-20 px-6">
+    <>
+    <CategorySection
+    selectedCategory={selectedCategory}
+    setSelectedCategory={setSelectedCategory}
+  />
 
-      <h1 className="text-4xl font-bold mb-10">
-        Our Products
-      </h1>
+  <div className="max-w-7xl mx-auto py-20 px-6">
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <h2 className="text-4xl font-bold mb-10">
 
-        {products.map((product) => (
-          <ProductCard
-            key={product._id}
-            product={product}
-          />
-        ))}
+      {selectedCategory === "All"
+        ? "All Products"
+        : selectedCategory}
 
-      </div>
+    </h2>
+
+    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+      {filteredProducts.map((product) => (
+
+        <ProductCard
+          key={product._id}
+          product={product}
+        />
+
+      ))}
 
     </div>
+
+  </div>
+  </>
   );
 }
 

@@ -51,6 +51,38 @@ const getMyOrders = async (req, res) => {
 
 };
 
+const cancelOrder = async (req, res) => {
+  const order = await Order.findById(req.params.id);
+
+  if (!order) {
+    return res.status(404).json({
+      message: "Order not found",
+    });
+  }
+
+  if (order.user.toString() !== req.user.id) {
+    return res.status(403).json({
+      message: "Not authorized",
+    });
+  }
+
+  if (order.status !== "Pending") {
+    return res.status(400).json({
+      message: "Order cannot be cancelled after shipping.",
+    });
+  }
+
+  order.status = "Cancelled";
+
+  await order.save();
+
+  res.json({
+    success: true,
+    message: "Order cancelled successfully.",
+    order,
+  });
+};
+
 //All Orders (Admin)
 const getAllOrders = async (req, res) => {
 
@@ -152,4 +184,5 @@ module.exports = {
   getAllOrders,
   updateOrderStatus,
   deleteOrder,
+  cancelOrder,
 };

@@ -30,6 +30,64 @@ export const fetchSingleProduct = createAsyncThunk(
   }
 );
 
+export const removeProduct = createAsyncThunk(
+  "products/delete",
+  async (id, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.user.token;
+
+      await productService.deleteProduct(id, token);
+
+      return id;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data?.message || error.message
+      );
+    }
+  }
+);
+
+export const createProduct = createAsyncThunk(
+  "products/create",
+  async (productData, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.user.token;
+
+      const product = await productService.addProduct(
+        productData,
+        token
+      );
+
+      return product;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data?.message || error.message
+      );
+    }
+  }
+);
+
+export const editProduct = createAsyncThunk(
+  "products/edit",
+  async ({ id, productData }, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.user.token;
+
+      const product = await productService.updateProduct(
+        id,
+        productData,
+        token
+      );
+
+      return product;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data?.message || error.message
+      );
+    }
+  }
+);
+
 const productSlice = createSlice({
   name: "products",
 
@@ -65,7 +123,23 @@ const productSlice = createSlice({
       .addCase(fetchSingleProduct.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
-      });
+      })
+
+      .addCase(removeProduct.fulfilled, (state, action) => {
+        state.products = state.products.filter(
+        (product) => product._id !== action.payload);
+      })
+
+      .addCase(createProduct.fulfilled, (state, action) => {
+        state.products.push(action.payload);
+      })
+
+      .addCase(editProduct.fulfilled, (state, action) => {
+        state.products = state.products.map((product) =>
+        product._id === action.payload._id
+        ? action.payload
+        : product);
+      })
   },
 });
 
