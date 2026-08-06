@@ -42,20 +42,25 @@ function Register() {
   };
 
   return (
-    <AuthLayout title="Create Account 🚀" subtitle="Join TechVerse and explore premium technology.">
-      
-      {/* Error Message */}
+    <AuthLayout 
+      title="Create your account" 
+      subtitle="Already have an account? " 
+    >
+      <div className="mb-6 text-sm">
+        <span className="text-slate-600 font-medium">Already have an account? </span>
+        <Link to="/login" className="font-semibold text-blue-600 hover:text-blue-700 hover:underline transition-colors">
+          Sign In
+        </Link>
+      </div>
+
       {error && (
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mb-6 rounded-lg bg-red-500/10 border border-red-500/20 p-3 text-red-400 text-sm"
-        >
-          {error}
-        </motion.div>
+        <div className="mb-6 rounded-lg bg-red-50 border border-red-200 px-4 py-3 flex items-center gap-2 text-red-700 text-sm">
+          <span className="text-lg">⚠️</span>
+          <span>{error}</span>
+        </div>
       )}
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-5">
         
         <AuthInput
           label="Full Name"
@@ -81,7 +86,7 @@ function Register() {
           name="password"
           value={password}
           onChange={handleChange}
-          placeholder="Create a strong password"
+          placeholder="Create a password"
         />
 
         <AuthInput
@@ -93,33 +98,12 @@ function Register() {
           placeholder="Confirm your password"
         />
 
-        {/* Password Match Hint */}
-        {confirmPassword.length > 0 && (
-          <p className={`text-xs ${password === confirmPassword ? "text-green-400" : "text-red-400"}`}>
-            {password === confirmPassword ? "✓ Passwords match" : "✗ Passwords do not match"}
-          </p>
-        )}
-
-        {/* Terms Checkbox */}
-        <div className="flex items-start gap-3 pt-2">
-          <input
-            type="checkbox"
-            id="terms"
-            className="mt-1 h-4 w-4 rounded border-gray-700 bg-black/50 text-blue-600 focus:ring-blue-500"
-            required
-          />
-          <label htmlFor="terms" className="text-sm text-gray-400 leading-tight">
-            I agree to the <span className="text-blue-400 hover:underline cursor-pointer">Terms of Service</span> and <span className="text-blue-400 hover:underline cursor-pointer">Privacy Policy</span>
-          </label>
-        </div>
-
-        {/* Submit Button */}
         <motion.button
           whileHover={{ scale: 1.01 }}
           whileTap={{ scale: 0.98 }}
           type="submit"
           disabled={loading || password !== confirmPassword}
-          className="w-full rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 py-3.5 text-base font-bold text-white shadow-lg shadow-purple-500/20 transition-all duration-300 hover:shadow-xl disabled:opacity-70 disabled:cursor-not-allowed"
+          className="w-full rounded-lg bg-blue-600 py-3.5 text-base font-semibold text-white shadow-sm hover:bg-blue-700 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed"
         >
           {loading ? (
             <span className="flex items-center justify-center gap-2">
@@ -127,17 +111,9 @@ function Register() {
               Creating Account...
             </span>
           ) : (
-            "Create Account"
+            "Sign Up"
           )}
         </motion.button>
-
-        {/* Footer Link */}
-        <div className="pt-2 text-center text-sm text-gray-400">
-          Already have an account?{" "}
-          <Link to="/login" className="font-semibold text-blue-400 hover:text-blue-300 transition-colors">
-            Sign In
-          </Link>
-        </div>
 
       </form>
     </AuthLayout>

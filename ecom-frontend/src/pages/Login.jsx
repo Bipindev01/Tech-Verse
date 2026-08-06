@@ -18,8 +18,6 @@ function Login() {
     password: "",
   });
 
-  const [remember, setRemember] = useState(false);
-
   useEffect(() => {
     if (user) {
       navigate("/");
@@ -39,20 +37,26 @@ function Login() {
   };
 
   return (
-    <AuthLayout title="Welcome Back 👋" subtitle="Sign in to continue your TechVerse experience.">
-      
-      {/* Error Message */}
+    <AuthLayout 
+      title="Log in to your account" 
+    >
+      {/* Subtitle Link (Styled to match MongoDB) */}
+      <div className="mb-6 text-sm">
+        <span className="text-slate-600 font-normal">Don't have an account? </span>
+        <Link to="/register" className="font-semibold text-blue-600 hover:text-blue-700 hover:underline transition-colors">
+          Sign Up
+        </Link>
+      </div>
+
+      {/* Error Alert - Clean Green/Red box like MongoDB */}
       {error && (
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mb-6 rounded-lg bg-red-500/10 border border-red-500/20 p-3 text-red-400 text-sm"
-        >
-          {error}
-        </motion.div>
+        <div className="mb-6 rounded-lg bg-red-50 border border-red-200 px-4 py-3 flex items-center gap-2 text-red-700 text-sm">
+          <span className="text-lg">⚠️</span>
+          <span>{error}</span>
+        </div>
       )}
 
-      <form onSubmit={handleSubmit} className="space-y-5">
+      <form onSubmit={handleSubmit} className="space-y-6">
         
         <AuthInput
           label="Email Address"
@@ -69,23 +73,13 @@ function Login() {
           name="password"
           value={formData.password}
           onChange={handleChange}
-          placeholder="••••••••"
+          placeholder="Enter your password"
         />
 
-        {/* Remember Me & Forgot Password */}
-        <div className="flex items-center justify-between pt-1">
-          <label className="flex items-center gap-2.5 text-sm text-gray-400 cursor-pointer">
-            <input
-              type="checkbox"
-              checked={remember}
-              onChange={() => setRemember(!remember)}
-              className="h-4 w-4 rounded border-gray-700 bg-black/50 text-blue-600 focus:ring-blue-500"
-            />
-            Remember me
-          </label>
-
-          <button type="button" className="text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors">
-            Forgot Password?
+        {/* Forgot Password - Right aligned */}
+        <div className="flex justify-end">
+          <button type="button" className="text-sm font-medium text-blue-600 hover:text-blue-700 hover:underline">
+            Forgot your password?
           </button>
         </div>
 
@@ -95,25 +89,17 @@ function Login() {
           whileTap={{ scale: 0.98 }}
           type="submit"
           disabled={loading}
-          className="w-full rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 py-3.5 text-base font-bold text-white shadow-lg shadow-purple-500/20 transition-all duration-300 hover:shadow-xl disabled:opacity-70 disabled:cursor-not-allowed"
+          className="w-full rounded-lg bg-blue-600 py-3.5 text-base font-semibold text-white shadow-sm hover:bg-blue-700 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed"
         >
           {loading ? (
             <span className="flex items-center justify-center gap-2">
               <div className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white"></div>
-              Signing In...
+              Logging in...
             </span>
           ) : (
-            "Sign In"
+            "Next"
           )}
         </motion.button>
-
-        {/* Footer Link */}
-        <div className="pt-3 text-center text-sm text-gray-400">
-          Don't have an account?{" "}
-          <Link to="/register" className="font-semibold text-blue-400 hover:text-blue-300 transition-colors">
-            Create Account
-          </Link>
-        </div>
 
       </form>
     </AuthLayout>
