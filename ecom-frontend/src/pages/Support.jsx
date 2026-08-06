@@ -41,9 +41,9 @@ function Support() {
 
       {/* Hero */}
 
-      <section className="bg-gradient-to-r from-slate-900 to-black text-white py-28">
+      <section className="bg-linear-to-r from-slate-900 to-black text-white py-28">
 
-        <div className="max-w-6xl mx-auto px-6 text-center">
+        <div className="max-w-full mx-auto px-6 text-center">
 
           <p className="uppercase tracking-[0.35em] text-blue-400 font-semibold">
             TECHVERSE SUPPORT
@@ -53,7 +53,7 @@ function Support() {
             Need Help?
           </h1>
 
-          <p className="mt-8 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-8">
+          <p className="mt-8 text-lg md:text-xl text-gray-300 max-w-full mx-auto leading-8">
             Whether you need help with orders, returns, warranty,
             or product information, our support team is always ready
             to assist you.
@@ -66,8 +66,10 @@ function Support() {
       {/* Support Cards */}
 
 <section className="py-20 bg-slate-50">
+  <br />
+  <br />
 
-  <div className="max-w-5xl mx-auto px-6">
+  <div className="max-w-[1800px] mx-auto pt-20 pb-24 px-8">
 
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 justify-items-center">
 
@@ -108,9 +110,9 @@ function Support() {
 
       {/* Contact Section */}
 
-<section className="bg-white py-20">
-
-  <div className="max-w-6xl mx-auto px-6">
+<section className="bg-white py-20 ">
+<div className="absolute bottom-50 left-0 w-full h-10 bg-white z-20">
+  <div className="max-w-full mx-auto px-6">
 
     <div className="text-center">
 
@@ -131,8 +133,9 @@ function Support() {
     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
 
       <div className="rounded-3xl border border-slate-200 bg-slate-50 p-10 text-center hover:shadow-xl transition">
-
+      <div className="flex justify-center items-center mb-6">
         <FaEnvelope className="mx-auto text-5xl text-blue-600" />
+      </div>
 
         <h3 className="mt-6 text-2xl font-bold">
 
@@ -149,8 +152,9 @@ function Support() {
       </div>
 
       <div className="rounded-3xl border border-slate-200 bg-slate-50 p-10 text-center hover:shadow-xl transition">
-
+      <div className="flex justify-center items-center mb-6">
         <FaPhoneAlt className="mx-auto text-5xl text-green-600" />
+      </div>
 
         <h3 className="mt-6 text-2xl font-bold">
 
@@ -160,15 +164,16 @@ function Support() {
 
         <p className="mt-3 text-gray-600">
 
-          +91 98765 43210
+          +91 45451 15454
 
         </p>
 
       </div>
 
       <div className="rounded-3xl border border-slate-200 bg-slate-50 p-10 text-center hover:shadow-xl transition">
-
+      <div className="flex justify-center items-center mb-6">
         <FaComments className="mx-auto text-5xl text-purple-600" />
+      </div>
 
         <h3 className="mt-6 text-2xl font-bold">
 
@@ -184,8 +189,8 @@ function Support() {
 
       </div>
 
+      </div>
     </div>
-
   </div>
 
 </section>

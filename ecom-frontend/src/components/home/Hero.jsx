@@ -9,6 +9,9 @@ function Hero() {
         backgroundImage: `url(${heroBg})`,
       }}
     >
+
+<div className="absolute bottom-0 left-0 w-full h-10 bg-white z-20"></div>
+
       {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black/40"></div>
 

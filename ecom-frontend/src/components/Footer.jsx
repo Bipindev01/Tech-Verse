@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function Footer() {
   return (
-    <footer className="bg-[#f5f5f7] border-t border-gray-300 mt-24">
+    <footer className="mt-24 bg-[#f5f5f7] border-t border-gray-300">
       <div className="max-w-6xl mx-auto">
         {/* Footer Links */}
 

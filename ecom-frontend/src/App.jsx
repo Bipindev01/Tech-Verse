@@ -20,12 +20,16 @@ import EditProduct from "./pages/EditProduct";
 import Deals from "./pages/Deals";
 import NewArrivals from "./pages/NewArrivals";
 import Support from "./pages/Support";
+import AuthLayoutOnly from "./layouts/AuthLayoutOnly";
 
 import AdminRoute from "./components/AdminRoute";
 import AdminProducts from "./pages/AdminProducts";
 import AdminOrders from "./pages/AdminOrders";
 
 const router = createBrowserRouter([
+  // ===========================
+  // Main Website
+  // ===========================
   {
     path: "/",
     element: <MainLayout />,
@@ -43,16 +47,6 @@ const router = createBrowserRouter([
       {
         path: "product/:id",
         element: <ProductDetails />,
-      },
-
-      {
-        path: "login",
-        element: <Login />,
-      },
-
-      {
-        path: "register",
-        element: <Register />,
       },
 
       {
@@ -114,7 +108,7 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "/admin/products",
+        path: "admin/products",
         element: (
           <ProtectedRoute>
             <AdminRoute>
@@ -123,8 +117,9 @@ const router = createBrowserRouter([
           </ProtectedRoute>
         ),
       },
+
       {
-        path: "/admin/products/add",
+        path: "admin/products/add",
         element: (
           <ProtectedRoute>
             <AdminRoute>
@@ -133,8 +128,9 @@ const router = createBrowserRouter([
           </ProtectedRoute>
         ),
       },
+
       {
-        path: "/admin/products/edit/:id",
+        path: "admin/products/edit/:id",
         element: (
           <ProtectedRoute>
             <AdminRoute>
@@ -143,8 +139,9 @@ const router = createBrowserRouter([
           </ProtectedRoute>
         ),
       },
+
       {
-        path: "/admin/orders",
+        path: "admin/orders",
         element: (
           <ProtectedRoute>
             <AdminRoute>
@@ -153,9 +150,29 @@ const router = createBrowserRouter([
           </ProtectedRoute>
         ),
       },
+
       {
         path: "*",
         element: <NotFound />,
+      },
+    ],
+  },
+
+  // ===========================
+  // Authentication Pages
+  // ===========================
+  {
+    path: "/",
+    element: <AuthLayoutOnly />,
+    children: [
+      {
+        path: "login",
+        element: <Login />,
+      },
+
+      {
+        path: "register",
+        element: <Register />,
       },
     ],
   },

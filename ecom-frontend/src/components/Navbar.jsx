@@ -132,50 +132,67 @@ function Navbar() {
                 </button>
 
                 {showDropdown && (
-                  <div className="absolute mt-3 w-40 mx-auto rounded-2xl border border-slate-200 bg-white shadow-xl">
-                    <div className="border-b border-slate-100 px-5 py-4">
-                      <p className="text-sm text-slate-500">Signed in as</p>
+                  <div className="absolute right-0 mt-4 w-72 overflow-hidden rounded-xl bg-[#2d2d2d] text-white shadow-2xl border border-gray-700 z-50">
+                    {/* User */}
+                    <div className="px-6 py-5 border-b border-gray-600">
+                      <p className="text-sm text-gray-400">Signed in as</p>
 
-                      <p className="mt-1 font-semibold text-slate-900">
+                      <p className="mt-1 text-lg font-semibold">
                         {user.user.name}
                       </p>
                     </div>
 
+                    {/* My Profile */}
                     <Link
                       to="/profile"
                       onClick={() => setShowDropdown(false)}
-                      className="flex items-center gap-3 px-5 py-4 transition hover:bg-slate-50"
+                      className="flex items-center gap-4 px-6 py-4 hover:bg-[#3a3a3a] transition"
                     >
-                      <FaUserCircle />
-                      My Profile
+                      <FaUserCircle className="text-xl text-gray-300" />
+
+                      <span className="text-[17px]">Your Account</span>
                     </Link>
 
+                    {/* Orders */}
                     <Link
                       to="/myorders"
                       onClick={() => setShowDropdown(false)}
-                      className="flex items-center gap-3 px-5 py-4 transition hover:bg-slate-50"
+                      className="flex items-center gap-4 px-6 py-4 hover:bg-[#3a3a3a] transition"
                     >
-                      <FaBoxOpen />
-                      My Orders
+                      <FaBoxOpen className="text-xl text-gray-300" />
+
+                      <span className="text-[17px]">Your Orders</span>
                     </Link>
 
+                    {/* Admin */}
                     {user?.user?.role === "admin" && (
                       <Link
                         to="/admin"
                         onClick={() => setShowDropdown(false)}
-                        className="flex items-center gap-3 px-5 py-4 transition hover:bg-slate-50"
+                        className="flex items-center gap-4 px-6 py-4 hover:bg-[#3a3a3a] transition"
                       >
-                        Dashboard
+                        <FaBoxOpen className="text-xl text-gray-300" />
+
+                        <span className="text-[17px]">Dashboard</span>
                       </Link>
                     )}
 
-                    <button
-                      onClick={handleLogout}
-                      className="flex w-full items-center gap-3 px-5 py-4 text-red-600 transition hover:bg-red-50"
-                    >
-                      <FaSignOutAlt />
-                      Logout
-                    </button>
+                    {/* Divider */}
+                    <div className="border-t border-gray-600 mt-2"></div>
+
+                    {/* Footer */}
+                    <div className="px-6 py-4">
+                      <p className="text-center text-sm text-gray-400">
+                        Want to switch accounts?
+                      </p>
+
+                      <button
+                        onClick={handleLogout}
+                        className="mt-4 w-full rounded-md bg-red-600 py-3 text-lg font-semibold uppercase tracking-wide text-white transition hover:bg-red-700"
+                      >
+                        Logout
+                      </button>
+                    </div>
                   </div>
                 )}
               </>

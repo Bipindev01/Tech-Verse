@@ -1,11 +1,12 @@
 import { FaMobileAlt, FaLaptop, FaHeadphones, FaCamera } from "react-icons/fa";
-
 import { BsSmartwatch } from "react-icons/bs";
 import { MdDesktopWindows, MdSportsEsports } from "react-icons/md";
+import { motion } from "framer-motion";
 
 const categories = [
   {
     name: "All",
+    value: "All",
     icon: "✨",
   },
   {
@@ -47,51 +48,53 @@ const categories = [
 
 function CategorySection({ selectedCategory, setSelectedCategory }) {
   return (
-    <section className="bg-slate-50 py-32">
-      <div className="w-full -100 px-6">
-        <div className="flex text-center flex-col items-center justify-center gap-3 mt-5 pt-6">
-          <h2 className="mt-3 text-4xl md:text-5xl font-bold tracking-tight text-slate-900">
+    <section className="bg-slate-50 py-12 md:py-16">
+      <div className="max-w-[1980px] mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Header Section - Better spacing */}
+        <div className="text-center max-w-3xl mx-auto mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900">
             Browse by Category
           </h2>
-
-          <p className="items-center justify-items-center mt-5 text-lg text-slate-500 max-w-2xl mx-auto">
-            Discover premium technology across every category, carefully
-            selected to deliver performance, innovation, and exceptional
-            quality.
-          </p>
         </div>
-
-        <div className="mt-20 flex justify-center">
-          <div className="grid grid-cols-4 gap-15">
-          {categories.map((category) => (
-            <button
+          <br/>
+        {/* Categories Grid - Fixed card sizing */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-8 gap-4 md:gap-5">
+          {categories.map((category, index) => (
+            <motion.button
               key={category.name}
-              onClick={() => setSelectedCategory(category.value || category.name)}
-              className={`group w-90 h-50 mx-auto cursor-pointer rounded-3xl border p-8 flex flex-col items-center justify-center transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${
-                selectedCategory === category.name
-                  ? "border-blue-300 bg-blue-50"
-                  : "border-slate-200 bg-white hover:border-blue-200"
-              }`}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: index * 0.05 }}
+              onClick={() => setSelectedCategory(category.value)}
+              className={`group relative flex flex-col items-center justify-center p-5 md:p-6 rounded-2xl border-2 transition-all duration-300 
+                ${
+                  selectedCategory === category.value
+                    ? "border-blue-300 bg-blue-50 shadow-md"
+                    : "border-slate-200 bg-white hover:border-blue-300 hover:shadow-lg hover:-translate-y-1"
+                }
+              `}
             >
-              <div className="flex justify-center">
-                <div
-                  className={`flex h-20 w-20 items-center justify-center rounded-2xl text-4xl transition-all duration-300
-${
-  selectedCategory === (category.value || category.name)
-    ? "bg-blue-400 text-white"
-    : "bg-slate-100 text-slate-700 group-hover:bg-blue-400 group-hover:text-white"
-}`}
-                >
-                  {category.icon}
-                </div>
+              {/* Icon Container - Fixed height so "All" doesn't float */}
+              <div
+                className={`flex h-14 w-14 md:h-16 md:w-16 items-center justify-center rounded-xl text-2xl md:text-3xl transition-all duration-300
+                  ${
+                    selectedCategory === category.value
+                      ? "bg-blue-500 text-white shadow-md shadow-blue-200"
+                      : "bg-slate-100 text-slate-700 group-hover:bg-blue-500 group-hover:text-white group-hover:shadow-md group-hover:shadow-blue-200"
+                  }
+                `}
+              >
+                {category.icon}
               </div>
 
-              <h3 className="mt-8 text-center text-lg font-semibold text-slate-900">
+              {/* Category Name */}
+              <h3 className="mt-3 text-sm md:text-base font-semibold text-slate-800">
                 {category.name}
               </h3>
-            </button>
+            </motion.button>
           ))}
-          </div>
         </div>
       </div>
     </section>

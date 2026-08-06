@@ -60,8 +60,8 @@ const search = searchParams.get("search") || "";
     selectedCategory={selectedCategory}
     setSelectedCategory={setSelectedCategory}
   />
-
-  <div className="max-w-7xl mx-auto py-20 px-6">
+<br />
+<div className="max-w-[1800px] mx-auto pt-20 pb-24 px-8">
 
     <h2 className="text-4xl font-bold mb-10">
 
@@ -85,6 +85,8 @@ const search = searchParams.get("search") || "";
     </div>
 
   </div>
+  <br />
+  <br />
   </>
   );
 }
