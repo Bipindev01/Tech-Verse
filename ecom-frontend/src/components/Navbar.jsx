@@ -17,10 +17,13 @@ import {
 
 import { HiOutlineCpuChip } from "react-icons/hi2";
 
+
 function Navbar() {
   const { user } = useSelector((state) => state.auth);
   const { cartItems } = useSelector((state) => state.cart);
 
+   console.log(user);
+   
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -39,6 +42,7 @@ function Navbar() {
     }`;
 
   return (
+    
     <nav className="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur-xl">
       <div className="mx-auto flex h-18 max-w-7xl items-center justify-between px-6">
         {/* Logo */}
@@ -121,7 +125,7 @@ function Navbar() {
                   <FaUserCircle className="text-xl text-blue-600" />
 
                   <span className="hidden md:block text-sm font-medium text-slate-700">
-                    {user.user.name}
+                    {user?.user?.name}
                   </span>
 
                   <FaChevronDown
@@ -138,7 +142,7 @@ function Navbar() {
                       <p className="text-sm text-gray-400">Signed in as</p>
 
                       <p className="mt-1 text-lg font-semibold">
-                        {user.user.name}
+                        {user?.user?.name}
                       </p>
                     </div>
 

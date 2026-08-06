@@ -14,7 +14,15 @@ connectDB()
 
 const app = express()
 
-app.use(cors())
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",          // Local development
+      "tech-verse-5tat41tcw-bips-projects-87401990.vercel.app",  // New Vercel URL
+    ],
+    credentials: true,
+  })
+);
 app.use(express.json())
 
 app.use("/api/auth", authRoutes);

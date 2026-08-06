@@ -23,7 +23,7 @@ function AuthInput({
       transition={{ duration: 0.3 }}
       className="mb-5"
     >
-      <label className="mb-1.5 block text-sm font-medium text-gray-700 lg:text-blue-200/90">
+      <label className="mb-1.5 block text-sm font-medium text-gray-700 lg:text-black-400/90">
         {label}
       </label>
 
@@ -37,7 +37,7 @@ function AuthInput({
           onBlur={() => setIsFocused(false)}
           placeholder={placeholder}
           required
-          className={`w-full rounded-xl border px-5 py-3.5 outline-none transition-all duration-300 text-gray-900 lg:text-white placeholder:text-gray-400 lg:placeholder:text-blue-200/50
+          className={`w-full rounded-xl border px-5 py-3.5 outline-none transition-all duration-300 text-gray-900 lg:text-gray placeholder:text-gray-400 lg:placeholder:text-gray-400/50
             ${isFocused 
               ? "border-blue-500 bg-white/5 ring-2 ring-blue-500/20" 
               : "border-white/20 bg-white/5 lg:bg-white/5"

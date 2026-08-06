@@ -43,7 +43,7 @@ function AuthLayout({ children, title, subtitle }) {
       <div className="hidden lg:flex flex-1 relative bg-linear-to-br from-[#0B1120] via-[#1E293B] to-[#312E81] overflow-hidden">
         
         {/* Branding Content */}
-        <div className="relative z-10 flex flex-col justify-center px-16 xl:px-24 text-white">
+        <div className="relative z-10 flex flex-col items-center justify-center w-full h-full px-16 text-center text-white">
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
