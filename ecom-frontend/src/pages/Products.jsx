@@ -21,7 +21,9 @@ const search = searchParams.get("search") || "";
     error,
   } = useSelector((state) => state.product);
 
-  const filteredProducts = products.filter((product) => {
+  console.log("Products from Redux:", products);
+
+  const filteredProducts = products?.filter((product) => {
 
   const matchesCategory =
     selectedCategory === "All" ||
@@ -32,7 +34,7 @@ const search = searchParams.get("search") || "";
 
   return matchesCategory && matchesSearch;
 
-});
+}) || [];
 
   useEffect(() => {
     dispatch(fetchProducts());

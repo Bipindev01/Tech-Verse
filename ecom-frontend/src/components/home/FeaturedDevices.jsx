@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 import iphoneVideo from "../../assets/videos/Enhancer-Ultra HD-iphone 17 pro.mp4";
 import macbookVideo from "../../assets/videos/macbook new - Trim.mp4";
@@ -8,6 +9,7 @@ const devices = [
   {
     id: 1,
     title: "iPhone 17 Series",
+    productId: "6a69b461fc569c2edeb44329",
     subtitle: "Meet the latest iPhone lineup.",
     image: null,
     video: iphoneVideo,
@@ -16,6 +18,7 @@ const devices = [
   {
     id: 2,
     title: "MacBook Air",
+    productId: "6a6e6bbf62caaff543317c69",
     subtitle: "Supercharged by Apple Silicon.",
     image: null,
     video: macbookVideo,
@@ -24,6 +27,7 @@ const devices = [
   {
     id: 3,
     title: null,
+    productId: "6a6e6af262caaff543317c68",
     subtitle: null,
     image: null,
     video: playstation,
@@ -40,6 +44,7 @@ const devices = [
 ];
 
 function FeaturedDevices() {
+  const navigate = useNavigate();
   const videoRefs = useRef([]);
   const sectionRefs = useRef([]);
 
@@ -139,7 +144,9 @@ function FeaturedDevices() {
 
             {device.id !== 3 ? (
               <div className="mt-8 flex gap-5">
-                <button className="rounded-full bg-blue-600 px-7 py-3 text-white transition hover:bg-blue-700">
+                <button 
+                 onClick={() => navigate(`/product/${device.productId}`)}
+                className="rounded-full bg-blue-600 px-7 py-3 text-white transition hover:bg-blue-700">
                   Learn More
                 </button>
 
@@ -155,7 +162,9 @@ function FeaturedDevices() {
               </div>
             ) : (
               <div className="absolute bottom-45 left-1/2 -translate-x-1/2 flex gap-5">
-                <button className="rounded-full bg-blue-600 px-8 py-3 text-white transition hover:bg-blue-700">
+                <button 
+                 onClick={() => navigate(`/product/${device.productId}`)}
+                 className="rounded-full bg-blue-600 px-8 py-3 text-white transition hover:bg-blue-700">
                   Learn More
                 </button>
 
