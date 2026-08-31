@@ -44,10 +44,11 @@ function Register() {
   return (
     <AuthLayout 
       title="Create your account" 
-      subtitle="Already have an account? " 
+      // subtitle="Already have an account? " 
     >
+      
       <div className="mb-6 text-sm">
-        <span className="text-slate-600 font-medium">Already have an account? </span>
+        <span className="text-slate-600 font-light">Already have an account? </span>
         <Link to="/login" className="font-semibold text-blue-600 hover:text-blue-700 hover:underline transition-colors">
           Sign In
         </Link>
