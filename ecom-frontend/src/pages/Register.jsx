@@ -98,7 +98,7 @@ function Register() {
           onChange={handleChange}
           placeholder="Confirm your password"
         />
-
+        <br />
         <motion.button
           whileHover={{ scale: 1.01 }}
           whileTap={{ scale: 0.98 }}
